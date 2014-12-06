@@ -59,13 +59,15 @@ public class FileManager {
  
 		// root elements
 		doc = docBuilder.newDocument();
-		Element rootElement = doc.createElement("recipe");
+		Element rootElement = doc.createElement("recipes");
                 
 		doc.appendChild(rootElement);
                 
                 // Recipe elements
-                for (Recipe recipe : schedule.getRecipeList()) {                     
-                    rootElement.setAttribute("title", recipe.getTitle());
+                for (Recipe recipe : schedule.getRecipeList()) { 
+                    Element rec = doc.createElement("recipe");
+                    rootElement.appendChild(rec);
+                    rec.setAttribute("title", recipe.getTitle());
                     
                     for (Ingredient ingredient : recipe.getIngredientList()) {
                         Element ing = doc.createElement("ingredient");
